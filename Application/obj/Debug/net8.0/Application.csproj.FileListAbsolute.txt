@@ -15,3 +15,4 @@ F:\Fontys\Fontys_S7\Experiments\DistributedJobProcessing\Application\obj\Debug\n
 F:\Fontys\Fontys_S7\Experiments\DistributedJobProcessing\Application\obj\Debug\net8.0\ref\Application.dll
 F:\Fontys\Fontys_S7\Experiments\DistributedJobProcessing\Application\bin\Debug\net8.0\Application.runtimeconfig.json
 F:\Fontys\Fontys_S7\Experiments\DistributedJobProcessing\Application\obj\Debug\net8.0\Application.genruntimeconfig.cache
+F:\Fontys\Fontys_S7\Experiments\DistributedJobProcessing\Application\obj\Debug\net8.0\Application.sourcelink.json

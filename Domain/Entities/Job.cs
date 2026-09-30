@@ -27,6 +27,18 @@ namespace Domain.Entities
         public DateTime? StartedAt { get; set; }
         public DateTime? CompletedAt { get; set; }
 
+        public void Create(string type, string payload, JobPriority priority = JobPriority.Normal, int maxRetries = 3)
+        {
+            Id = Guid.NewGuid();
+            Type = type;
+            Payload = payload;
+            Status = JobStatus.Queued;
+            Priority = priority;
+            RetryCount = 0;
+            MaxRetries = maxRetries;
+            CreatedAt = DateTime.UtcNow;
+        }
+
         public void Start()
         {
             if (Status != JobStatus.Assigned)
