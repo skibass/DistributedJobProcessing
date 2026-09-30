@@ -1,0 +1,6 @@
+@DistributedJobProcessing_HostAddress = http://localhost:5213
+
+GET {{DistributedJobProcessing_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

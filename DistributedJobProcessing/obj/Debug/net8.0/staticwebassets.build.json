@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "ELQ+cVPmQztBsxQHV468H0Z9+fEti2tHsfObs6z1W+I=",
+  "Source": "DistributedJobProcessing",
+  "BasePath": "_content/DistributedJobProcessing",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

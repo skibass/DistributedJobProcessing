@@ -1,0 +1,14 @@
+F:\Fontys\Fontys_S7\Experiments\DistributedJobProcessing\Domain\bin\Debug\net8.0\Domain.deps.json
+F:\Fontys\Fontys_S7\Experiments\DistributedJobProcessing\Domain\bin\Debug\net8.0\Domain.dll
+F:\Fontys\Fontys_S7\Experiments\DistributedJobProcessing\Domain\bin\Debug\net8.0\Domain.pdb
+F:\Fontys\Fontys_S7\Experiments\DistributedJobProcessing\Domain\obj\Debug\net8.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+F:\Fontys\Fontys_S7\Experiments\DistributedJobProcessing\Domain\obj\Debug\net8.0\Domain.AssemblyInfoInputs.cache
+F:\Fontys\Fontys_S7\Experiments\DistributedJobProcessing\Domain\obj\Debug\net8.0\Domain.AssemblyInfo.cs
+F:\Fontys\Fontys_S7\Experiments\DistributedJobProcessing\Domain\obj\Debug\net8.0\Domain.csproj.CoreCompileInputs.cache
+F:\Fontys\Fontys_S7\Experiments\DistributedJobProcessing\Domain\obj\Debug\net8.0\Domain.dll
+F:\Fontys\Fontys_S7\Experiments\DistributedJobProcessing\Domain\obj\Debug\net8.0\refint\Domain.dll
+F:\Fontys\Fontys_S7\Experiments\DistributedJobProcessing\Domain\obj\Debug\net8.0\Domain.pdb
+F:\Fontys\Fontys_S7\Experiments\DistributedJobProcessing\Domain\obj\Debug\net8.0\ref\Domain.dll
+F:\Fontys\Fontys_S7\Experiments\DistributedJobProcessing\Domain\bin\Debug\net8.0\Domain.runtimeconfig.json
+F:\Fontys\Fontys_S7\Experiments\DistributedJobProcessing\Domain\obj\Debug\net8.0\Domain.csproj.AssemblyReference.cache
+F:\Fontys\Fontys_S7\Experiments\DistributedJobProcessing\Domain\obj\Debug\net8.0\Domain.genruntimeconfig.cache
