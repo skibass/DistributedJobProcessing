@@ -37,5 +37,11 @@ namespace Infrastructure.Repositories
                 .Take(amount)
                 .ToList();
         }
+
+        public void ChangeWorkerJob(Guid jobId)
+        {
+            _context.Workers.FirstOrDefault(w => w.CurrentJobId == jobId);
+            _context.SaveChangesAsync();
+        }
     }
 }

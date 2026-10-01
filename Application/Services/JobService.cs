@@ -18,11 +18,6 @@ namespace Application.Services
             _repo = repo;
         }
 
-        private string RandomWorkerNameGenerator()
-        {
-            return $"Worker-{Guid.NewGuid().ToString()[..4].ToUpper()}";
-        }
-
         public Job CreateJob(string type, string payload, JobPriority priority, int maxRetries)
         {
             Job job = new Job();

@@ -26,6 +26,16 @@ namespace Infrastructure.Repositories
             return job;
         }
 
+        public void ChangeJobWorker(Job job, Guid workerId)
+        {
+            var changedJob = _context.Jobs.FirstOrDefault(j => j.Id == job.Id);
+            if (job != null)
+            {
+                job.WorkerId = workerId;
+                _context.SaveChangesAsync();
+            }
+        }
+
         //public Worker? GetWorkerById(Guid id)
         //{
         //    return _context.Workers

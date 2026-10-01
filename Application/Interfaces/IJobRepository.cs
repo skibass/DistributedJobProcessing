@@ -10,5 +10,6 @@ namespace Application.Interfaces
     public interface IJobRepository
     {
         public Job CreateJob(Job job);
+        public void ChangeJobWorker(Job job, Guid workerId);
     }
 }
