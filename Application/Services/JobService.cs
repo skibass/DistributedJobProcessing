@@ -31,10 +31,6 @@ namespace Application.Services
             return job;
         }
 
-        public Job GetJobById(Guid id)
-        {
-            return _jobRepo.GetJobById(id);
-        }
         public async Task StartJobAsync(Guid workerId, Guid jobId)
         {
             Job? job = _jobRepo.GetJobById(jobId);

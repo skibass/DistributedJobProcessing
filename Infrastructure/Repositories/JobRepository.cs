@@ -27,7 +27,9 @@ namespace Infrastructure.Repositories
         {
             return _context.Jobs
                 .Where(j => j.Status == JobStatus.Queued)
-                .OrderBy(j => j.CreatedAt)
+                .OrderByDescending(j => j.Priority)
+                .ThenBy(j => j.CreatedAt)
+                .ThenBy(j => j.Id)
                 .FirstOrDefault();
         }
 
