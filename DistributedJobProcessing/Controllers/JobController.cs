@@ -19,7 +19,7 @@ namespace DistributedJobProcessing.Controllers
 
         [HttpPost("create")]
         public ActionResult<Job> CreateJob(
-            [FromQuery] JobType type,
+            [FromQuery] string type,
             [FromQuery] string payload,
             [FromQuery] JobPriority priority = JobPriority.Normal,
             [FromQuery] int maxRetries = 3)

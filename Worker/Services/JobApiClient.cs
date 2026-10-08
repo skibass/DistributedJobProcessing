@@ -1,13 +1,23 @@
-﻿
-using Domain.Entities;
+﻿using Domain.Entities;
 using System.Net;
 using System.Net.Http.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Worker.Services
 {
     public class JobApiClient
     {
         private readonly HttpClient _httpClient;
+
+        private static readonly JsonSerializerOptions JsonOptions = new()
+        {
+            PropertyNameCaseInsensitive = true,
+            Converters =
+            {
+                new JsonStringEnumConverter()
+            }
+        };
 
         public JobApiClient(HttpClient httpClient)
         {
@@ -17,7 +27,7 @@ namespace Worker.Services
         public async Task<Guid> RegisterWorkerAsync(
             CancellationToken cancellationToken = default)
         {
-            HttpResponseMessage response = await _httpClient.PostAsync(
+            using HttpResponseMessage response = await _httpClient.PostAsync(
                 "Worker/add",
                 null,
                 cancellationToken);
@@ -26,7 +36,8 @@ namespace Worker.Services
 
             Domain.Entities.Worker? worker = await response.Content
                 .ReadFromJsonAsync<Domain.Entities.Worker>(
-                    cancellationToken: cancellationToken);
+                    JsonOptions,
+                    cancellationToken);
 
             if (worker == null)
                 throw new InvalidOperationException(
@@ -39,7 +50,7 @@ namespace Worker.Services
             Guid workerId,
             CancellationToken cancellationToken = default)
         {
-            HttpResponseMessage response = await _httpClient.PostAsync(
+            using HttpResponseMessage response = await _httpClient.PostAsync(
                 $"JobAssignment/{workerId}/jobs/request",
                 null,
                 cancellationToken);
@@ -51,14 +62,16 @@ namespace Worker.Services
 
             Job? job = await response.Content
                 .ReadFromJsonAsync<Job>(
-                    cancellationToken: cancellationToken);
+                    JsonOptions,
+                    cancellationToken);
 
             return job;
         }
+
         public async Task StartJobAsync(
-    Guid workerId,
-    Guid jobId,
-    CancellationToken cancellationToken = default)
+            Guid workerId,
+            Guid jobId,
+            CancellationToken cancellationToken = default)
         {
             using HttpResponseMessage response = await _httpClient.PostAsync(
                 $"Job/{jobId}/start?workerId={workerId}",
@@ -69,11 +82,11 @@ namespace Worker.Services
         }
 
         public async Task CompleteJobAsync(
-    Guid workerId,
-    Guid jobId,
-    CancellationToken cancellationToken = default)
+            Guid workerId,
+            Guid jobId,
+            CancellationToken cancellationToken = default)
         {
-            HttpResponseMessage response = await _httpClient.PostAsync(
+            using HttpResponseMessage response = await _httpClient.PostAsync(
                 $"Job/{jobId}/complete?workerId={workerId}",
                 null,
                 cancellationToken);
@@ -82,11 +95,11 @@ namespace Worker.Services
         }
 
         public async Task FailedJobAsync(
-    Guid workerId,
-    Guid jobId,
-    CancellationToken cancellationToken = default)
+            Guid workerId,
+            Guid jobId,
+            CancellationToken cancellationToken = default)
         {
-            HttpResponseMessage response = await _httpClient.PostAsync(
+            using HttpResponseMessage response = await _httpClient.PostAsync(
                 $"Job/{jobId}/failed?workerId={workerId}",
                 null,
                 cancellationToken);

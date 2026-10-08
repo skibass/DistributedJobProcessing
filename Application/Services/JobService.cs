@@ -20,7 +20,7 @@ namespace Application.Services
             _workerRepo = workerRepo;
         }
 
-        public Job CreateJob(JobType type, string payload, JobPriority priority, int maxRetries)
+        public Job CreateJob(string type, string payload, JobPriority priority, int maxRetries)
         {
             Job job = new Job();
             job.Create(type, payload, priority, maxRetries);

@@ -12,7 +12,7 @@ namespace Domain.Entities
     {
         public Guid Id { get; set; }
 
-        public JobType Type { get; set; }
+        public string Type { get; set; }
         public string Payload { get; set; } = string.Empty;
 
         public JobStatus Status { get; set; }
@@ -27,7 +27,7 @@ namespace Domain.Entities
         public DateTime? StartedAt { get; set; }
         public DateTime? CompletedAt { get; set; }
 
-        public void Create(JobType type, string payload, JobPriority priority = JobPriority.Normal, int maxRetries = 3)
+        public void Create(string type, string payload, JobPriority priority = JobPriority.Normal, int maxRetries = 3)
         {
             Id = Guid.NewGuid();
             Type = type;
