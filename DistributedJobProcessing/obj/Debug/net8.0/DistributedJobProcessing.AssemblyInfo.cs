@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DistributedJobProcessing")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+58d040a9c1b50001818caa921e5c695a54f95710")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c05a3256196879275c768c175b0b7ac0b35a2254")]
 [assembly: System.Reflection.AssemblyProductAttribute("DistributedJobProcessing")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DistributedJobProcessing")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

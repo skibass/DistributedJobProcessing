@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "F:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FF44FB07-288B-4B97-911D-00B54EDDB53E}|Application\\Application.csproj|f:\\fontys\\fontys_s7\\experiments\\distributedjobprocessing\\application\\services\\jobservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF44FB07-288B-4B97-911D-00B54EDDB53E}|Application\\Application.csproj|solutionrelative:application\\services\\jobservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F2457002-51C3-412C-B5DB-33B2494561E7}|Domain\\Domain.csproj|f:\\fontys\\fontys_s7\\experiments\\distributedjobprocessing\\domain\\entities\\job.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F2457002-51C3-412C-B5DB-33B2494561E7}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\job.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{556D7329-48DF-40F3-A7BD-E914996CF9D2}|Worker\\Worker.csproj|f:\\fontys\\fontys_s7\\experiments\\distributedjobprocessing\\worker\\worker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{556D7329-48DF-40F3-A7BD-E914996CF9D2}|Worker\\Worker.csproj|solutionrelative:worker\\worker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,12 +19,12 @@
       "RelativeMoniker": "D:0:0:{556D7329-48DF-40F3-A7BD-E914996CF9D2}|Worker\\Worker.csproj|solutionrelative:worker\\services\\jobapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3443A48B-1550-4602-8CEA-CF1BE9F1AF4C}|DistributedJobProcessing\\DistributedJobProcessing.csproj|f:\\fontys\\fontys_s7\\experiments\\distributedjobprocessing\\distributedjobprocessing\\controllers\\jobcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3443A48B-1550-4602-8CEA-CF1BE9F1AF4C}|DistributedJobProcessing\\DistributedJobProcessing.csproj|solutionrelative:distributedjobprocessing\\controllers\\jobcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{556D7329-48DF-40F3-A7BD-E914996CF9D2}|Worker\\Worker.csproj|f:\\fontys\\fontys_s7\\experiments\\distributedjobprocessing\\worker\\handlers\\checkimageexists.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{556D7329-48DF-40F3-A7BD-E914996CF9D2}|Worker\\Worker.csproj|solutionrelative:worker\\handlers\\checkimageexists.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF44FB07-288B-4B97-911D-00B54EDDB53E}|Application\\Application.csproj|f:\\fontys\\fontys_s7\\experiments\\distributedjobprocessing\\application\\services\\jobservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF44FB07-288B-4B97-911D-00B54EDDB53E}|Application\\Application.csproj|solutionrelative:application\\services\\jobservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3443A48B-1550-4602-8CEA-CF1BE9F1AF4C}|DistributedJobProcessing\\DistributedJobProcessing.csproj|f:\\fontys\\fontys_s7\\experiments\\distributedjobprocessing\\distributedjobprocessing\\controllers\\jobcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3443A48B-1550-4602-8CEA-CF1BE9F1AF4C}|DistributedJobProcessing\\DistributedJobProcessing.csproj|solutionrelative:distributedjobprocessing\\controllers\\jobcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FF44FB07-288B-4B97-911D-00B54EDDB53E}|Application\\Application.csproj|f:\\fontys\\fontys_s7\\experiments\\distributedjobprocessing\\application\\interfaces\\ijobservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -29,14 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{F2457002-51C3-412C-B5DB-33B2494561E7}|Domain\\Domain.csproj|f:\\fontys\\fontys_s7\\experiments\\distributedjobprocessing\\domain\\entities\\worker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F2457002-51C3-412C-B5DB-33B2494561E7}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\worker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F2457002-51C3-412C-B5DB-33B2494561E7}|Domain\\Domain.csproj|f:\\fontys\\fontys_s7\\experiments\\distributedjobprocessing\\domain\\entities\\job.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F2457002-51C3-412C-B5DB-33B2494561E7}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\job.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{556D7329-48DF-40F3-A7BD-E914996CF9D2}|Worker\\Worker.csproj|f:\\fontys\\fontys_s7\\experiments\\distributedjobprocessing\\worker\\handlers\\checkimageexists.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{556D7329-48DF-40F3-A7BD-E914996CF9D2}|Worker\\Worker.csproj|solutionrelative:worker\\handlers\\checkimageexists.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{556D7329-48DF-40F3-A7BD-E914996CF9D2}|Worker\\Worker.csproj|f:\\fontys\\fontys_s7\\experiments\\distributedjobprocessing\\worker\\services\\jobexecutor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -142,7 +142,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -158,16 +158,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 4,
               "Title": "CheckImageExists.cs",
               "DocumentMoniker": "F:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\Worker\\Handlers\\CheckImageExists.cs",
               "RelativeDocumentMoniker": "Worker\\Handlers\\CheckImageExists.cs",
               "ToolTip": "F:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\Worker\\Handlers\\CheckImageExists.cs",
               "RelativeToolTip": "Worker\\Handlers\\CheckImageExists.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-08T00:51:43.406Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-08T00:51:43.406Z"
             },
             {
               "$type": "Document",
@@ -179,8 +178,7 @@
               "RelativeToolTip": "Worker\\Services\\JobExecutor.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAlwB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-07T23:51:49.201Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-07T23:51:49.201Z"
             },
             {
               "$type": "Document",
@@ -196,7 +194,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "JobController.cs",
               "DocumentMoniker": "F:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\DistributedJobProcessing\\Controllers\\JobController.cs",
               "RelativeDocumentMoniker": "DistributedJobProcessing\\Controllers\\JobController.cs",
@@ -204,8 +202,7 @@
               "RelativeToolTip": "DistributedJobProcessing\\Controllers\\JobController.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAQwDgAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-30T17:52:51.477Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-30T17:52:51.477Z"
             },
             {
               "$type": "Document",
@@ -221,7 +218,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "JobService.cs",
               "DocumentMoniker": "F:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\Application\\Services\\JobService.cs",
               "RelativeDocumentMoniker": "Application\\Services\\JobService.cs",
@@ -234,20 +231,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 1,
               "Title": "Job.cs",
               "DocumentMoniker": "F:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\Domain\\Entities\\Job.cs",
               "RelativeDocumentMoniker": "Domain\\Entities\\Job.cs",
               "ToolTip": "F:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\Domain\\Entities\\Job.cs",
               "RelativeToolTip": "Domain\\Entities\\Job.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAwwFEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACoAAAAAAAAAAAAwwFAAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-09-30T15:07:44.731Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "JobApiClient.cs",
               "DocumentMoniker": "F:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\Worker\\Services\\JobApiClient.cs",
               "RelativeDocumentMoniker": "Worker\\Services\\JobApiClient.cs",
@@ -255,18 +252,17 @@
               "RelativeToolTip": "Worker\\Services\\JobApiClient.cs",
               "ViewState": "AgIAACkAAAAAAAAAAAAwwFQAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-08T00:26:55.622Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-08T00:26:55.622Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Worker.cs",
               "DocumentMoniker": "F:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\Worker\\Worker.cs",
               "RelativeDocumentMoniker": "Worker\\Worker.cs",
               "ToolTip": "F:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\Worker\\Worker.cs",
               "RelativeToolTip": "Worker\\Worker.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwC0AAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwCcAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-09-30T21:43:19.381Z",
               "EditorCaption": ""
@@ -293,12 +289,11 @@
               "RelativeToolTip": "Infrastructure\\Repositories\\JobRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-30T19:27:35.065Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-30T19:27:35.065Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "Worker.cs",
               "DocumentMoniker": "F:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\Domain\\Entities\\Worker.cs",
               "RelativeDocumentMoniker": "Domain\\Entities\\Worker.cs",
@@ -306,12 +301,11 @@
               "RelativeToolTip": "Domain\\Entities\\Worker.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-30T15:07:51.593Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-30T15:07:51.593Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "Domain.csproj",
               "DocumentMoniker": "F:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\Domain\\Domain.csproj",
               "RelativeDocumentMoniker": "Domain\\Domain.csproj",
@@ -319,12 +313,11 @@
               "RelativeToolTip": "Domain\\Domain.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-09-30T16:51:54.496Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-30T16:51:54.496Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "IJobService.cs",
               "DocumentMoniker": "F:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\Application\\Interfaces\\IJobService.cs",
               "RelativeDocumentMoniker": "Application\\Interfaces\\IJobService.cs",
@@ -332,8 +325,7 @@
               "RelativeToolTip": "Application\\Interfaces\\IJobService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwBEAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-30T19:26:08.757Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-30T19:26:08.757Z"
             },
             {
               "$type": "Document",

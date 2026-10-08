@@ -80,8 +80,20 @@ namespace Domain.Entities
                     "Only assigned or running jobs can be failed.");
             }
 
-            Status = JobStatus.Failed;
-            CompletedAt = DateTime.UtcNow;
+            if (RetryCount < MaxRetries)
+            {
+                RetryCount++;
+
+                Status = JobStatus.Queued;
+                WorkerId = null;
+                StartedAt = null;
+                CompletedAt = null;
+            }
+            else
+            {
+                Status = JobStatus.Failed;
+                CompletedAt = DateTime.UtcNow;
+            }
         }
     }
 }
