@@ -11,6 +11,6 @@ namespace Application.Interfaces
     {
         public Worker AddWorker();
         public Worker GetWorkerById(Guid id);
-        public List<Worker> GetWorkers(int amount);
+        public List<Worker> GetWorkers();
     }
 }

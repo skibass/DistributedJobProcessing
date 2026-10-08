@@ -1,11 +1,14 @@
-﻿using Application.Interfaces;
+﻿
+using Application.Interfaces;
 using Domain.Entities;
 using Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DistributedJobProcessing.Controllers
 {
-    public class JobController : Controller
+    [ApiController]
+    [Route("[controller]")]
+    public class JobController : ControllerBase
     {
         private readonly IJobService _jobService;
 
@@ -14,22 +17,41 @@ namespace DistributedJobProcessing.Controllers
             _jobService = jobService;
         }
 
-        [HttpPost("/create")]
-        public Job CreateJob(string type, string payload, JobPriority priority, int maxRetries)
+        [HttpPost("create")]
+        public ActionResult<Job> CreateJob(
+            [FromQuery] string type,
+            [FromQuery] string payload,
+            [FromQuery] JobPriority priority = JobPriority.Normal,
+            [FromQuery] int maxRetries = 3)
         {
-            return _jobService.CreateJob(type, payload, priority = JobPriority.Normal, maxRetries = 3);
+            Job job = _jobService.CreateJob(
+                type,
+                payload,
+                priority,
+                maxRetries);
+
+            return Ok(job);
         }
 
-        //[HttpGet("/get/{id}")]
-        //public Job GetJobById(Guid id)
-        //{
-        //    return _jobService.GetWorkerById(id);
-        //}
+        [HttpPost("{jobId:guid}/start")]
+        public async Task<IActionResult> StartJob(
+    Guid jobId,
+    [FromQuery] Guid workerId)
+        {
+            await _jobService.StartJobAsync(workerId, jobId);
 
-        //[HttpGet("/get")]
-        //public List<Job> GetJobs(int amount)
-        //{
-        //    return _jobService.GetWorkers(amount);
-        //}
+            return NoContent();
+        }
+
+        [HttpPost("{jobId:guid}/complete")]
+        public async Task<IActionResult> CompleteJob(
+    Guid jobId,
+    [FromQuery] Guid workerId)
+        {
+            await _jobService.CompleteJobAsync(workerId, jobId);
+
+            return NoContent();
+        }
     }
+
 }

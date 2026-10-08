@@ -1,11 +1,8 @@
-﻿using Application.Interfaces;
+﻿
+using Application.Interfaces;
 using Domain.Entities;
+using Domain.Enums;
 using Infrastructure.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
@@ -26,26 +23,23 @@ namespace Infrastructure.Repositories
             return job;
         }
 
-        public void ChangeJobWorker(Job job, Guid workerId)
+        public Job? GetNextQueuedJob()
         {
-            var changedJob = _context.Jobs.FirstOrDefault(j => j.Id == job.Id);
-            if (job != null)
-            {
-                job.WorkerId = workerId;
-                _context.SaveChangesAsync();
-            }
+            return _context.Jobs
+                .Where(j => j.Status == JobStatus.Queued)
+                .OrderBy(j => j.CreatedAt)
+                .FirstOrDefault();
         }
 
-        //public Worker? GetWorkerById(Guid id)
-        //{
-        //    return _context.Workers
-        //        .FirstOrDefault(worker => worker.Id == id);
-        //}
-        //public List<Worker> GetWorkers(int amount)
-        //{
-        //    return _context.Workers
-        //        .Take(amount)
-        //        .ToList();
-        //}
+        public Job? GetJobById(Guid id)
+        {
+            return _context.Jobs
+                .FirstOrDefault(j => j.Id == id);
+        }
+
+        public async Task<int> SaveChangesAsync()
+        {
+            return await _context.SaveChangesAsync();
+        }
     }
 }

@@ -1,10 +1,13 @@
-﻿using Application.Interfaces;
+﻿
+using Application.Interfaces;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DistributedJobProcessing.Controllers
 {
-    public class WorkerController : Controller
+    [ApiController]
+    [Route("[controller]")]
+    public class WorkerController : ControllerBase
     {
         private readonly IWorkerService _workerService;
 
@@ -13,23 +16,29 @@ namespace DistributedJobProcessing.Controllers
             _workerService = workerService;
         }
 
-        [HttpPost("/add")]
-        public Worker AddWorker()
-        {            
-            return _workerService.AddWorker();
-        }
-
-        [HttpGet("/get/{id}")]
-        public Worker GetWorkerById(Guid id)
+        [HttpPost("add")]
+        public ActionResult<Worker> AddWorker()
         {
-            return _workerService.GetWorkerById(id);
+            Worker worker = _workerService.AddWorker();
+
+            return Ok(worker);
         }
 
-        [HttpGet("/get")]
-        public List<Worker> GetWorkers(int amount)
+        [HttpGet("get/{id:guid}")]
+        public ActionResult<Worker> GetWorkerById(Guid id)
         {
-            return _workerService.GetWorkers(amount);
+            Worker? worker = _workerService.GetWorkerById(id);
+
+            if (worker == null)
+                return NotFound();
+
+            return Ok(worker);
         }
 
+        [HttpGet("get")]
+        public ActionResult<List<Worker>> GetWorkers()
+        {
+            return Ok(_workerService.GetWorkers());
+        }
     }
 }

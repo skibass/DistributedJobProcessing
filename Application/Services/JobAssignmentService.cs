@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Services
 {
-    public class JobAssignmentService
+    public class JobAssignmentService : IJobAssignmentService
     {
         private readonly IWorkerRepository _workerRepo;
         private readonly IJobRepository _jobRepo;
@@ -20,20 +20,32 @@ namespace Application.Services
             _jobRepo = jobRepository;
         }
 
-        public Worker FindWorkerNotIdle()
+        private Worker FindAvailableWorker()
         {
-            return _workerRepo.GetWorkers(10).FirstOrDefault(w => w.Status == WorkerStatus.Idle);
+            return _workerRepo.GetWorkers().FirstOrDefault(w => w.Status != WorkerStatus.Idle);
         }
 
-        public void AssignJobToWorker(Job job)
-        {        
-            Worker worker = FindWorkerNotIdle();  
-  
-            job.WorkerId = worker.Id;
-            job.Status = JobStatus.Assigned;
+        public async Task<Job?> AssignJobToWorkerAsync(Guid workerId)
+        {
+            Worker? worker = _workerRepo.GetWorkerById(workerId);
 
-            _workerRepo.ChangeWorkerJob(job.Id);
-            _jobRepo.ChangeJobWorker(job, worker.Id);
+            if (worker == null)
+                throw new InvalidOperationException("Worker not found.");
+
+            if (worker.Status != WorkerStatus.Idle)
+                throw new InvalidOperationException("Worker is not available.");
+
+            Job? job = _jobRepo.GetNextQueuedJob();
+
+            if (job == null)
+                return null;
+
+            job.AssignToWorker(worker.Id);
+            worker.AssignJob(job.Id);
+
+            await _jobRepo.SaveChangesAsync();
+
+            return job;
         }
     }
 }

@@ -9,6 +9,11 @@ builder.Services.AddSingleton<JobExecutor>();
 
 builder.Services.AddHostedService<Worker.Worker>();
 
+builder.Services.AddHttpClient<JobApiClient>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7131/");
+});
+
 var host = builder.Build();
 
 host.Run();

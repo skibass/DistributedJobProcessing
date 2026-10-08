@@ -16,6 +16,7 @@ builder.Services.AddScoped<IWorkerService, WorkerService>();
 builder.Services.AddScoped<IWorkerRepository, WorkerRepository>();
 builder.Services.AddScoped<IJobRepository, JobRepository>();
 builder.Services.AddScoped<IJobService, JobService>();
+builder.Services.AddScoped<IJobAssignmentService, JobAssignmentService>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(

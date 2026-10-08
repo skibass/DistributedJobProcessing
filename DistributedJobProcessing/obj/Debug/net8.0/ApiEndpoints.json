@@ -1,28 +1,50 @@
 [
   {
-    "ContainingType": "DistributedJobProcessing.Controllers.WorkerController",
-    "Method": "AddWorker",
-    "RelativePath": "add",
+    "ContainingType": "DistributedJobProcessing.Controllers.JobController",
+    "Method": "CompleteJob",
+    "RelativePath": "Job/{jobId}/complete",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
+    "Parameters": [
       {
-        "Type": "Domain.Entities.Worker",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
+        "Name": "jobId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "workerId",
+        "Type": "System.Guid",
+        "IsRequired": false
       }
-    ]
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DistributedJobProcessing.Controllers.JobController",
+    "Method": "StartJob",
+    "RelativePath": "Job/{jobId}/start",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "jobId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "workerId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "DistributedJobProcessing.Controllers.JobController",
     "Method": "CreateJob",
-    "RelativePath": "create",
+    "RelativePath": "Job/create",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -61,19 +83,59 @@
     ]
   },
   {
-    "ContainingType": "DistributedJobProcessing.Controllers.WorkerController",
-    "Method": "GetWorkers",
-    "RelativePath": "get",
-    "HttpMethod": "GET",
+    "ContainingType": "DistributedJobProcessing.Controllers.JobAssignmentController",
+    "Method": "RequestJob",
+    "RelativePath": "JobAssignment/{workerId}/jobs/request",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "amount",
-        "Type": "System.Int32",
-        "IsRequired": false
+        "Name": "workerId",
+        "Type": "System.Guid",
+        "IsRequired": true
       }
     ],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.Entities.Job",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DistributedJobProcessing.Controllers.WorkerController",
+    "Method": "AddWorker",
+    "RelativePath": "Worker/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Domain.Entities.Worker",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DistributedJobProcessing.Controllers.WorkerController",
+    "Method": "GetWorkers",
+    "RelativePath": "Worker/get",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.List\u00601[[Domain.Entities.Worker, Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
@@ -89,7 +151,7 @@
   {
     "ContainingType": "DistributedJobProcessing.Controllers.WorkerController",
     "Method": "GetWorkerById",
-    "RelativePath": "get/{id}",
+    "RelativePath": "Worker/get/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

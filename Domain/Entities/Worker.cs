@@ -28,5 +28,22 @@ namespace Domain.Entities
             RegisteredAt = DateTime.UtcNow;
             LastHeartbeat = DateTime.UtcNow;
         }
+        public void CompleteJob(Guid jobId)
+        {
+            if (CurrentJobId != jobId)
+                throw new InvalidOperationException(
+                    "This worker is not executing the specified job.");
+
+            CurrentJobId = null;
+            Status = WorkerStatus.Idle;
+        }
+        public void AssignJob(Guid jobId)
+        {
+            if (Status != WorkerStatus.Idle)
+                throw new InvalidOperationException("Worker is not available.");
+
+            CurrentJobId = jobId;
+            Status = WorkerStatus.Busy;
+        }
     }
 }

@@ -37,9 +37,9 @@ namespace Application.Services
             return _repo.GetWorkerById(id);
         }
 
-        public List<Worker> GetWorkers(int amount)
+        public List<Worker> GetWorkers()
         {          
-            return _repo.GetWorkers(amount);
+            return _repo.GetWorkers();
         }
 
     }

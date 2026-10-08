@@ -6,7 +6,7 @@ namespace Worker.Handlers
     {
         public string JobType => "CheckImageExists";
 
-        public Task ExecuteAsync(Job job)
+        public async Task ExecuteAsync(Job job)
         {
             string path = job.Payload;
 
@@ -17,14 +17,14 @@ namespace Worker.Handlers
                     nameof(path));
             }
 
+            await Task.Delay(10000);
+
             if (!File.Exists(path))
             {
                 throw new FileNotFoundException(
                     $"The file at path '{path}' does not exist.",
                     path);
             }
-
-            return Task.CompletedTask;
         }
     }
 }

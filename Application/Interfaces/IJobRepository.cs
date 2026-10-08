@@ -10,6 +10,9 @@ namespace Application.Interfaces
     public interface IJobRepository
     {
         public Job CreateJob(Job job);
-        public void ChangeJobWorker(Job job, Guid workerId);
+        public Job GetNextQueuedJob();
+        public Job? GetJobById(Guid id);
+        Task<int> SaveChangesAsync();
+
     }
 }

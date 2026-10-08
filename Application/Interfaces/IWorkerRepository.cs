@@ -11,8 +11,8 @@ namespace Application.Interfaces
     {
         public Worker AddWorker(Worker worker);
         public Worker GetWorkerById(Guid id);
-        public List<Worker> GetWorkers(int amount);
-        public void ChangeWorkerJob(Guid jobId);
+        public List<Worker> GetWorkers();
+        public Task ChangeWorkerJobAsync(Guid workerId, Guid jobId);
 
     }
 }

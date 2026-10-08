@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/create": {
+    "/Job/create": {
       "post": {
         "tags": [
           "Job"
@@ -37,7 +37,8 @@
             "in": "query",
             "schema": {
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "default": 3
             }
           }
         ],
@@ -65,7 +66,109 @@
         }
       }
     },
-    "/add": {
+    "/Job/{jobId}/start": {
+      "post": {
+        "tags": [
+          "Job"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "workerId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Job/{jobId}/complete": {
+      "post": {
+        "tags": [
+          "Job"
+        ],
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "workerId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/JobAssignment/{workerId}/jobs/request": {
+      "post": {
+        "tags": [
+          "JobAssignment"
+        ],
+        "parameters": [
+          {
+            "name": "workerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Job"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Job"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Job"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Worker/add": {
       "post": {
         "tags": [
           "Worker"
@@ -94,7 +197,7 @@
         }
       }
     },
-    "/get/{id}": {
+    "/Worker/get/{id}": {
       "get": {
         "tags": [
           "Worker"
@@ -134,20 +237,10 @@
         }
       }
     },
-    "/get": {
+    "/Worker/get": {
       "get": {
         "tags": [
           "Worker"
-        ],
-        "parameters": [
-          {
-            "name": "amount",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
         ],
         "responses": {
           "200": {

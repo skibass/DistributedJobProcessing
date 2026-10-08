@@ -2696,23 +2696,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\thijn\\.nuget\\packages\\": {},
+    "C:\\Users\\Chris\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\DistributedJobProcessing\\DistributedJobProcessing.csproj",
+      "projectUniqueName": "F:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\DistributedJobProcessing\\DistributedJobProcessing.csproj",
       "projectName": "DistributedJobProcessing",
-      "projectPath": "C:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\DistributedJobProcessing\\DistributedJobProcessing.csproj",
-      "packagesPath": "C:\\Users\\thijn\\.nuget\\packages\\",
-      "outputPath": "C:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\DistributedJobProcessing\\obj\\",
+      "projectPath": "F:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\DistributedJobProcessing\\DistributedJobProcessing.csproj",
+      "packagesPath": "C:\\Users\\Chris\\.nuget\\packages\\",
+      "outputPath": "F:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\DistributedJobProcessing\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\thijn\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Chris\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2727,11 +2727,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\Application\\Application.csproj": {
-              "projectPath": "C:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\Application\\Application.csproj"
+            "F:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\Application\\Application.csproj": {
+              "projectPath": "F:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\Application\\Application.csproj"
             },
-            "C:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "C:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\Infrastructure\\Infrastructure.csproj"
+            "F:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "F:\\Fontys\\Fontys_S7\\Experiments\\DistributedJobProcessing\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }
@@ -2746,7 +2746,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -2794,7 +2794,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

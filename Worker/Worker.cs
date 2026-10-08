@@ -1,3 +1,4 @@
+using Domain.Entities;
 using Worker.Services;
 
 namespace Worker
@@ -6,27 +7,59 @@ namespace Worker
     {
         private readonly ILogger<Worker> _logger;
         private readonly JobExecutor _jobExecutor;
+        private readonly JobApiClient _apiClient;
 
-        public Worker(ILogger<Worker> logger, JobExecutor jobExecutor)
+        public Worker(ILogger<Worker> logger, JobExecutor jobExecutor, JobApiClient apiClient)
         {
             _logger = logger;
             _jobExecutor = jobExecutor;
+            _apiClient = apiClient;
         }
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override async Task ExecuteAsync(
+     CancellationToken stoppingToken)
         {
+            Guid workerId = await _apiClient.RegisterWorkerAsync(stoppingToken);
+
             while (!stoppingToken.IsCancellationRequested)
             {
-                if (_logger.IsEnabled(LogLevel.Information))
+                try
                 {
-                    _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+                    Job? job = await _apiClient.RequestJobAsync(
+                        workerId, stoppingToken);
+
+                    if (job != null)
+                    {
+                        await _apiClient.StartJobAsync(
+                            workerId, job.Id, stoppingToken);
+
+                        _logger.LogInformation(
+                            "Job {JobId} started.", job.Id);
+
+                        await _jobExecutor.ExecuteAsync(job);
+
+                        await _apiClient.CompleteJobAsync(
+                            workerId, job.Id, stoppingToken);
+
+                        _logger.LogInformation(
+                            "Job {JobId} completed successfully.", job.Id);
+                    }
+                    else
+                    {
+                        await Task.Delay(2000, stoppingToken);
+                    }
                 }
-                await _jobExecutor.ExecuteAsync(new Domain.Entities.Job
+                catch (OperationCanceledException)
+                    when (stoppingToken.IsCancellationRequested)
                 {
-                    Type = "CheckImageExists",
-                    Payload = "C://Users//thijn//Pictures//Screenshots//Screenshot 2025-09-02 112600.png"
-                });
-                await Task.Delay(1000, stoppingToken);
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Error while processing job.");
+
+                    await Task.Delay(2000, stoppingToken);
+                }
             }
         }
     }

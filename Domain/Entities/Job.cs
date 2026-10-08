@@ -39,6 +39,15 @@ namespace Domain.Entities
             CreatedAt = DateTime.UtcNow;
         }
 
+        public void AssignToWorker(Guid workerId)
+        {
+            if (Status != JobStatus.Queued)
+                throw new InvalidJobStateException(
+                    "Only queued jobs can be assigned to a worker.");
+            WorkerId = workerId;
+            Status = JobStatus.Assigned;
+        }
+
         public void Start()
         {
             if (Status != JobStatus.Assigned)
@@ -51,9 +60,12 @@ namespace Domain.Entities
 
         public void Complete()
         {
-            if (Status != JobStatus.Running)
+            if (Status != JobStatus.Assigned &&
+                Status != JobStatus.Running)
+            {
                 throw new InvalidJobStateException(
-                    "Only running jobs can be completed.");
+                    "Only assigned or running jobs can be completed.");
+            }
 
             Status = JobStatus.Completed;
             CompletedAt = DateTime.UtcNow;

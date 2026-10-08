@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Infrastructure.Persistence;
 using Application.Interfaces;
+using Domain.Enums;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
@@ -31,17 +33,24 @@ namespace Infrastructure.Repositories
             return _context.Workers
                 .FirstOrDefault(worker => worker.Id == id);
         }
-        public List<Worker> GetWorkers(int amount)
+        public List<Worker> GetWorkers()
         {
             return _context.Workers
-                .Take(amount)
                 .ToList();
         }
 
-        public void ChangeWorkerJob(Guid jobId)
+        public async Task ChangeWorkerJobAsync(Guid workerId, Guid jobId)
         {
-            _context.Workers.FirstOrDefault(w => w.CurrentJobId == jobId);
-            _context.SaveChangesAsync();
+            Worker? worker = await _context.Workers
+                .FirstOrDefaultAsync(w => w.Id == workerId);
+
+            if (worker == null)
+                throw new InvalidOperationException("Worker not found.");
+
+            worker.CurrentJobId = jobId;
+            worker.Status = WorkerStatus.Busy;
+
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -11,5 +11,10 @@ namespace Application.Interfaces
     public interface IJobService
     {
         public Job CreateJob(string type, string payload, JobPriority priority = JobPriority.Normal, int maxRetries = 3);
+        public Job GetNextQueuedJob();
+        public Task StartJobAsync(Guid workerId, Guid jobId);
+
+        public Task CompleteJobAsync(Guid workerId, Guid jobId);
+
     }
 }
