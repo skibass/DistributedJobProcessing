@@ -17,67 +17,115 @@ namespace Worker
         }
 
         protected override async Task ExecuteAsync(
-     CancellationToken stoppingToken)
+    CancellationToken stoppingToken)
         {
             Guid workerId = await _apiClient.RegisterWorkerAsync(stoppingToken);
 
-            while (!stoppingToken.IsCancellationRequested)
+            try
             {
-                try
+                while (!stoppingToken.IsCancellationRequested)
                 {
-                    Job? job = await _apiClient.RequestJobAsync(
-                        workerId, stoppingToken);
-
-                    if (job != null)
+                    try
                     {
-                        try
+                        Job? job = await _apiClient.RequestJobAsync(
+                            workerId, stoppingToken);
+
+                        if (job != null)
                         {
-                            await _apiClient.StartJobAsync(
-                                workerId, job.Id, stoppingToken);
-
-                            await _jobExecutor.ExecuteAsync(job);
-
-                            await _apiClient.CompleteJobAsync(
-                                workerId, job.Id, stoppingToken);
-                        }
-                        catch (Exception ex) when (
-                            ex is not OperationCanceledException ||
-                            !stoppingToken.IsCancellationRequested)
-                        {
-                            _logger.LogError(
-                                ex,
-                                "Job {JobId} failed.",
-                                job.Id);
-
                             try
                             {
-                                await _apiClient.FailedJobAsync(
+                                await _apiClient.StartJobAsync(
+                                    workerId, job.Id, stoppingToken);
+
+                                await _jobExecutor.ExecuteAsync(job);
+
+                                await _apiClient.CompleteJobAsync(
                                     workerId, job.Id, stoppingToken);
                             }
-                            catch (Exception reportEx)
+                            catch (OperationCanceledException)
+                                when (stoppingToken.IsCancellationRequested)
+                            {
+                                break;
+                            }
+                            catch (Exception ex)
                             {
                                 _logger.LogError(
-                                    reportEx,
-                                    "Could not report failure for job {JobId}.",
+                                    ex,
+                                    "Job {JobId} failed.",
                                     job.Id);
+
+                                try
+                                {
+                                    await _apiClient.FailedJobAsync(
+                                        workerId, job.Id, stoppingToken);
+                                }
+                                catch (OperationCanceledException)
+                                    when (stoppingToken.IsCancellationRequested)
+                                {
+                                    break;
+                                }
+                                catch (Exception reportEx)
+                                {
+                                    _logger.LogError(
+                                        reportEx,
+                                        "Could not report failure for job {JobId}.",
+                                        job.Id);
+                                }
                             }
                         }
+                        else
+                        {
+                            await Task.Delay(2000, stoppingToken);
+                        }
                     }
-                    else
+                    catch (OperationCanceledException)
+                        when (stoppingToken.IsCancellationRequested)
                     {
-                        await Task.Delay(2000, stoppingToken);
+                        break;
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(
+                            ex,
+                            "Error while processing job.");
+
+                        try
+                        {
+                            await Task.Delay(2000, stoppingToken);
+                        }
+                        catch (OperationCanceledException)
+                            when (stoppingToken.IsCancellationRequested)
+                        {
+                            break;
+                        }
                     }
                 }
-                catch (OperationCanceledException)
-                    when (stoppingToken.IsCancellationRequested)
+            }
+            finally
+            {
+                _logger.LogInformation(
+                    "Shutting down worker {WorkerId}...",
+                    workerId);
+
+                try
                 {
-                    break;
+                    using CancellationTokenSource timeout =
+                        new(TimeSpan.FromSeconds(5));
+
+                    await _apiClient.ShutdownWorkerAsync(
+                        workerId,
+                        timeout.Token);
+
+                    _logger.LogInformation(
+                        "Worker {WorkerId} successfully shut down.",
+                        workerId);
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, "Error while processing job.");
-
-                    await Task.Delay(2000, stoppingToken);
+                    _logger.LogError(
+                        ex,
+                        "Failed to shut down worker {WorkerId}.",
+                        workerId);
                 }
             }
         }

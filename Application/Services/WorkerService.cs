@@ -42,5 +42,16 @@ namespace Application.Services
             return _repo.GetWorkers();
         }
 
+        public async Task ShutdownWorkerAsync(Guid workerId)
+        {
+            Worker? worker = _repo.GetWorkerById(workerId);
+
+            if (worker == null)
+                throw new InvalidOperationException("Worker not found.");
+
+            worker.SetOffline();
+
+            await _repo.SaveChangesAsync();
+        }
     }
 }

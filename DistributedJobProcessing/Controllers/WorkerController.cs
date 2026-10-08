@@ -40,5 +40,13 @@ namespace DistributedJobProcessing.Controllers
         {
             return Ok(_workerService.GetWorkers());
         }
+
+        [HttpPost("{workerId:guid}/shutdown")]
+        public async Task<IActionResult> ShutdownWorker(Guid workerId)
+        {
+            await _workerService.ShutdownWorkerAsync(workerId);
+
+            return NoContent();
+        }
     }
 }

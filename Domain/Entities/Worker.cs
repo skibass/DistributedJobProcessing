@@ -45,5 +45,14 @@ namespace Domain.Entities
             CurrentJobId = jobId;
             Status = WorkerStatus.Busy;
         }
+
+        public void SetOffline()
+        {
+            if (CurrentJobId != null)
+                throw new InvalidOperationException(
+                    "Worker still has an assigned job.");
+
+            Status = WorkerStatus.Offline;
+        }
     }
 }

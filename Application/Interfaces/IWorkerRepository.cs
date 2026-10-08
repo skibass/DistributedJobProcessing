@@ -13,6 +13,7 @@ namespace Application.Interfaces
         public Worker GetWorkerById(Guid id);
         public List<Worker> GetWorkers();
         public Task ChangeWorkerJobAsync(Guid workerId, Guid jobId);
+        public Task<int> SaveChangesAsync();
 
     }
 }

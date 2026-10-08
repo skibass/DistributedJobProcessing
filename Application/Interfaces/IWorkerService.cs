@@ -12,5 +12,6 @@ namespace Application.Interfaces
         public Worker AddWorker();
         public Worker GetWorkerById(Guid id);
         public List<Worker> GetWorkers();
+        public Task ShutdownWorkerAsync(Guid workerId);
     }
 }

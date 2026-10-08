@@ -106,5 +106,17 @@ namespace Worker.Services
 
             response.EnsureSuccessStatusCode();
         }
+
+        public async Task ShutdownWorkerAsync(
+    Guid workerId,
+    CancellationToken cancellationToken = default)
+        {
+            using HttpResponseMessage response = await _httpClient.PostAsync(
+                $"Worker/{workerId}/shutdown",
+                null,
+                cancellationToken);
+
+            response.EnsureSuccessStatusCode();
+        }
     }
 }
