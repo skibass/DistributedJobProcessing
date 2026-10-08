@@ -15,6 +15,8 @@ namespace Application.Interfaces
         public Task StartJobAsync(Guid workerId, Guid jobId);
 
         public Task CompleteJobAsync(Guid workerId, Guid jobId);
+        public Task FailedJobAsync(Guid workerId, Guid jobId);
+
 
     }
 }

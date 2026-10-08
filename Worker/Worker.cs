@@ -30,19 +30,38 @@ namespace Worker
 
                     if (job != null)
                     {
-                        await _apiClient.StartJobAsync(
-                            workerId, job.Id, stoppingToken);
+                        try
+                        {
+                            await _apiClient.StartJobAsync(
+                                workerId, job.Id, stoppingToken);
 
-                        _logger.LogInformation(
-                            "Job {JobId} started.", job.Id);
+                            await _jobExecutor.ExecuteAsync(job);
 
-                        await _jobExecutor.ExecuteAsync(job);
+                            await _apiClient.CompleteJobAsync(
+                                workerId, job.Id, stoppingToken);
+                        }
+                        catch (Exception ex) when (
+                            ex is not OperationCanceledException ||
+                            !stoppingToken.IsCancellationRequested)
+                        {
+                            _logger.LogError(
+                                ex,
+                                "Job {JobId} failed.",
+                                job.Id);
 
-                        await _apiClient.CompleteJobAsync(
-                            workerId, job.Id, stoppingToken);
-
-                        _logger.LogInformation(
-                            "Job {JobId} completed successfully.", job.Id);
+                            try
+                            {
+                                await _apiClient.FailedJobAsync(
+                                    workerId, job.Id, stoppingToken);
+                            }
+                            catch (Exception reportEx)
+                            {
+                                _logger.LogError(
+                                    reportEx,
+                                    "Could not report failure for job {JobId}.",
+                                    job.Id);
+                            }
+                        }
                     }
                     else
                     {

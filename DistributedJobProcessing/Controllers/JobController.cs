@@ -52,6 +52,16 @@ namespace DistributedJobProcessing.Controllers
 
             return NoContent();
         }
+
+        [HttpPost("{jobId:guid}/failed")]
+        public async Task<IActionResult> FailedJob(
+   Guid jobId,
+   [FromQuery] Guid workerId)
+        {
+            await _jobService.FailedJobAsync(workerId, jobId);
+
+            return NoContent();
+        }
     }
 
 }

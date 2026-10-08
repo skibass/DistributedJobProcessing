@@ -22,6 +22,27 @@
   },
   {
     "ContainingType": "DistributedJobProcessing.Controllers.JobController",
+    "Method": "FailedJob",
+    "RelativePath": "Job/{jobId}/failed",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "jobId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "workerId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DistributedJobProcessing.Controllers.JobController",
     "Method": "StartJob",
     "RelativePath": "Job/{jobId}/start",
     "HttpMethod": "POST",

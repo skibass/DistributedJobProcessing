@@ -70,5 +70,18 @@ namespace Domain.Entities
             Status = JobStatus.Completed;
             CompletedAt = DateTime.UtcNow;
         }
+
+        public void Failed()
+        {
+            if (Status != JobStatus.Assigned &&
+                Status != JobStatus.Running)
+            {
+                throw new InvalidJobStateException(
+                    "Only assigned or running jobs can be failed.");
+            }
+
+            Status = JobStatus.Failed;
+            CompletedAt = DateTime.UtcNow;
+        }
     }
 }

@@ -80,5 +80,18 @@ namespace Worker.Services
 
             response.EnsureSuccessStatusCode();
         }
+
+        public async Task FailedJobAsync(
+    Guid workerId,
+    Guid jobId,
+    CancellationToken cancellationToken = default)
+        {
+            HttpResponseMessage response = await _httpClient.PostAsync(
+                $"Job/{jobId}/failed?workerId={workerId}",
+                null,
+                cancellationToken);
+
+            response.EnsureSuccessStatusCode();
+        }
     }
 }

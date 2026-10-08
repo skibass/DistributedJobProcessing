@@ -73,6 +73,23 @@ namespace Application.Services
             await _jobRepo.SaveChangesAsync();
         }
 
+        public async Task FailedJobAsync(Guid workerId, Guid jobId)
+        {
+            Job? job = _jobRepo.GetJobById(jobId);
+            Worker? worker = _workerRepo.GetWorkerById(workerId);
+
+            if (job == null || worker == null)
+                throw new InvalidOperationException("Job or worker not found.");
+
+            if (job.WorkerId != workerId || worker.CurrentJobId != jobId)
+                throw new InvalidOperationException("Job is not assigned to this worker.");
+
+            job.Failed();
+            worker.CompleteJob(jobId);
+
+            await _jobRepo.SaveChangesAsync();
+        }
+
         public Job GetNextQueuedJob()
         {
             return _jobRepo.GetNextQueuedJob();         
