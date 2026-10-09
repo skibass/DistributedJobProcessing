@@ -48,5 +48,13 @@ namespace DistributedJobProcessing.Controllers
 
             return NoContent();
         }
+
+        [HttpPost("{workerId:guid}/updateheartbeat")]
+        public async Task<IActionResult> UpdateHeartBeat(Guid workerId)
+        {
+            await _workerService.UpdateHeartBeatWorker(workerId);
+
+            return NoContent();
+        }
     }
 }

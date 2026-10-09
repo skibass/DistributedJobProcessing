@@ -53,5 +53,17 @@ namespace Application.Services
 
             await _repo.SaveChangesAsync();
         }
+
+        public async Task UpdateHeartBeatWorker(Guid workerId)
+        {
+            Worker? worker = _repo.GetWorkerById(workerId);
+
+            if (worker == null)
+                throw new InvalidOperationException("Worker not found.");
+
+            worker.UpdateHeartBeat();
+
+            await _repo.SaveChangesAsync();
+        }
     }
 }

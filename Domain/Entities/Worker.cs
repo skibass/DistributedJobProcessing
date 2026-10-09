@@ -54,5 +54,10 @@ namespace Domain.Entities
 
             Status = WorkerStatus.Offline;
         }
+
+        public void UpdateHeartBeat()
+        {
+            LastHeartbeat = DateTime.UtcNow;
+        }
     }
 }

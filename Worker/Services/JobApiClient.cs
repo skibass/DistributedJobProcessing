@@ -118,5 +118,17 @@ namespace Worker.Services
 
             response.EnsureSuccessStatusCode();
         }
+        public async Task UpdateHeartBeatAsync(
+    Guid workerId,
+    CancellationToken cancellationToken = default)
+        {
+            using HttpResponseMessage response = await _httpClient.PostAsync(
+                $"Worker/{workerId}/updateheartbeat",
+                null,
+                cancellationToken);
+
+            response.EnsureSuccessStatusCode();
+        }
+
     }
 }

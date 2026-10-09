@@ -13,5 +13,6 @@ namespace Application.Interfaces
         public Worker GetWorkerById(Guid id);
         public List<Worker> GetWorkers();
         public Task ShutdownWorkerAsync(Guid workerId);
+        public Task UpdateHeartBeatWorker(Guid workerId);
     }
 }

@@ -16,10 +16,52 @@ namespace Worker
             _apiClient = apiClient;
         }
 
+        private async Task SendHeartbeatsAsync(
+    Guid workerId,
+    CancellationToken cancellationToken)
+        {
+            using var timer = new PeriodicTimer(TimeSpan.FromSeconds(10));
+
+            try
+            {
+                while (await timer.WaitForNextTickAsync(cancellationToken))
+                {
+                    try
+                    {
+                        await _apiClient.UpdateHeartBeatAsync(
+                            workerId, cancellationToken);
+                    }
+                    catch (OperationCanceledException)
+                        when (cancellationToken.IsCancellationRequested)
+                    {
+                        break;
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(
+                            ex,
+                            "Could not send heartbeat for worker {WorkerId}.",
+                            workerId);
+                    }
+                }
+            }
+            catch (OperationCanceledException)
+                when (cancellationToken.IsCancellationRequested)
+            {
+
+            }
+        }
+
         protected override async Task ExecuteAsync(
     CancellationToken stoppingToken)
         {
             Guid workerId = await _apiClient.RegisterWorkerAsync(stoppingToken);
+
+            using var heartbeatCancellation =
+    CancellationTokenSource.CreateLinkedTokenSource(stoppingToken);
+
+            Task heartbeatTask = SendHeartbeatsAsync(
+                workerId, heartbeatCancellation.Token);
 
             try
             {
@@ -103,6 +145,9 @@ namespace Worker
             }
             finally
             {
+                heartbeatCancellation.Cancel();
+                await heartbeatTask;
+
                 _logger.LogInformation(
                     "Shutting down worker {WorkerId}...",
                     workerId);
