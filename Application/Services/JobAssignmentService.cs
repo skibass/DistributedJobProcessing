@@ -20,10 +20,10 @@ namespace Application.Services
             _jobRepo = jobRepository;
         }
 
-        private Worker FindAvailableWorker()
-        {
-            return _workerRepo.GetWorkers().FirstOrDefault(w => w.Status != WorkerStatus.Idle);
-        }
+        //private Worker FindAvailableWorker()
+        //{
+        //    return _workerRepo.GetWorkers().FirstOrDefault(w => w.Status != WorkerStatus.Idle);
+        //}
 
         public async Task<Job?> AssignJobToWorkerAsync(Guid workerId)
         {
