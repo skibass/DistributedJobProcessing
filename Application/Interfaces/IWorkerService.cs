@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Application.DTOs;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,8 @@ namespace Application.Interfaces
     public interface IWorkerService
     {
         public Worker AddWorker();
-        public Worker GetWorkerById(Guid id);
-        public List<Worker> GetWorkers();
+        public Task<Worker> GetWorkerById(Guid id);
+        public Task<List<WorkerResponse>> GetWorkers();
         public Task ShutdownWorkerAsync(Guid workerId);
         public Task UpdateHeartBeatWorker(Guid workerId);
     }

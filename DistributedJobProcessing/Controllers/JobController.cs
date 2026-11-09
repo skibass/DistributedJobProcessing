@@ -1,4 +1,5 @@
 ﻿
+using Application.DTOs;
 using Application.Interfaces;
 using Domain.Entities;
 using Domain.Enums;
@@ -61,6 +62,13 @@ namespace DistributedJobProcessing.Controllers
             await _jobService.FailedJobAsync(workerId, jobId);
 
             return NoContent();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<JobResponse>>> GetJobs()
+        {
+            var jobs = await _jobService.GetJobs();
+            return Ok(jobs);
         }
     }
 

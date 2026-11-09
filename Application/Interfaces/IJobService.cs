@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Application.DTOs;
+using Domain.Entities;
 using Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace Application.Interfaces
 
         public Task CompleteJobAsync(Guid workerId, Guid jobId);
         public Task FailedJobAsync(Guid workerId, Guid jobId);
+        public Task<List<JobResponse>> GetJobs();
 
 
     }

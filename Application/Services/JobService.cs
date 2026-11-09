@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using Application.DTOs;
+using Application.Interfaces;
 using Domain.Entities;
 using Domain.Enums;
 using System;
@@ -33,8 +34,8 @@ namespace Application.Services
 
         public async Task StartJobAsync(Guid workerId, Guid jobId)
         {
-            Job? job = _jobRepo.GetJobById(jobId);
-            Worker? worker = _workerRepo.GetWorkerById(workerId);
+            Job? job = await _jobRepo.GetJobById(jobId);
+            Worker? worker = await _workerRepo.GetWorkerById(workerId);
 
             if (job == null || worker == null)
                 throw new InvalidOperationException("Job or worker not found.");
@@ -54,8 +55,8 @@ namespace Application.Services
 
         public async Task CompleteJobAsync(Guid workerId, Guid jobId)
         {
-            Job? job = _jobRepo.GetJobById(jobId);
-            Worker? worker = _workerRepo.GetWorkerById(workerId);
+            Job? job = await _jobRepo.GetJobById(jobId);
+            Worker? worker = await _workerRepo.GetWorkerById(workerId);
 
             if (job == null || worker == null)
                 throw new InvalidOperationException("Job or worker not found.");
@@ -71,8 +72,8 @@ namespace Application.Services
 
         public async Task FailedJobAsync(Guid workerId, Guid jobId)
         {
-            Job? job = _jobRepo.GetJobById(jobId);
-            Worker? worker = _workerRepo.GetWorkerById(workerId);
+            Job? job = await _jobRepo.GetJobById(jobId);
+            Worker? worker = await _workerRepo.GetWorkerById(workerId);
 
             if (job == null || worker == null)
                 throw new InvalidOperationException("Job or worker not found.");
@@ -89,6 +90,39 @@ namespace Application.Services
         public Job GetNextQueuedJob()
         {
             return _jobRepo.GetNextQueuedJob();         
+        }
+
+        public async Task<List<JobResponse>> GetJobs()
+        {
+            var jobs = await _jobRepo.GetJobs();
+            var result = new List<JobResponse>();
+
+            foreach (var job in jobs)
+            {
+                string workerName = "No worker assigned";
+
+                if (job.WorkerId.HasValue)
+                {
+                    var worker = await _workerRepo.GetWorkerById(job.WorkerId.Value);
+
+                    workerName = worker?.Name ?? "No worker assigned";
+                }
+
+                result.Add(new JobResponse
+                {
+                    Id = job.Id,
+                    Type = job.Type.ToString(),
+                    Payload = job.Payload.ToString(),
+                    Status = job.Status.ToString(),
+                    Priority = job.Priority.ToString(),
+                    RetryCount = job.RetryCount,
+                    MaxRetries = job.MaxRetries,
+                    CreatedAt = job.CreatedAt,
+                    WorkerName = workerName
+                });
+            }
+
+            return result;
         }
     }
 }

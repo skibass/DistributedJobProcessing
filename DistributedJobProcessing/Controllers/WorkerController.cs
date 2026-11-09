@@ -25,9 +25,9 @@ namespace DistributedJobProcessing.Controllers
         }
 
         [HttpGet("get/{id:guid}")]
-        public ActionResult<Worker> GetWorkerById(Guid id)
+        public async Task<ActionResult<Worker>> GetWorkerById(Guid id)
         {
-            Worker? worker = _workerService.GetWorkerById(id);
+            Worker? worker = await _workerService.GetWorkerById(id);
 
             if (worker == null)
                 return NotFound();
@@ -36,9 +36,9 @@ namespace DistributedJobProcessing.Controllers
         }
 
         [HttpGet("get")]
-        public ActionResult<List<Worker>> GetWorkers()
+        public async Task<ActionResult<List<Worker>>> GetWorkers()
         {
-            return Ok(_workerService.GetWorkers());
+            return Ok(await _workerService.GetWorkers());
         }
 
         [HttpPost("{workerId:guid}/shutdown")]

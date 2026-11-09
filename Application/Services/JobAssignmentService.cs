@@ -27,7 +27,7 @@ namespace Application.Services
 
         public async Task<Job?> AssignJobToWorkerAsync(Guid workerId)
         {
-            Worker? worker = _workerRepo.GetWorkerById(workerId);
+            Worker? worker = await _workerRepo.GetWorkerById(workerId);
 
             if (worker == null)
                 throw new InvalidOperationException("Worker not found.");

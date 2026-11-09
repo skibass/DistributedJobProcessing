@@ -28,12 +28,12 @@ namespace Infrastructure.Repositories
             return worker;
         }
 
-        public Worker? GetWorkerById(Guid id)
+        public async Task<Worker?> GetWorkerById(Guid id)
         {
-            return _context.Workers
-                .FirstOrDefault(worker => worker.Id == id);
+            return await _context.Workers
+                .FirstOrDefaultAsync(worker => worker.Id == id);
         }
-        public List<Worker> GetWorkers()
+        public async Task<List<Worker>> GetWorkers()
         {
             return _context.Workers
                 .ToList();

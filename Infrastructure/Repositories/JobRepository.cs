@@ -3,6 +3,7 @@ using Application.Interfaces;
 using Domain.Entities;
 using Domain.Enums;
 using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
@@ -33,15 +34,20 @@ namespace Infrastructure.Repositories
                 .FirstOrDefault();
         }
 
-        public Job? GetJobById(Guid id)
+        public async Task<Job?> GetJobById(Guid id)
         {
-            return _context.Jobs
-                .FirstOrDefault(j => j.Id == id);
+            return await _context.Jobs
+                .FirstOrDefaultAsync(j => j.Id == id);
         }
 
         public async Task<int> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<Job>> GetJobs()
+        {
+            return await _context.Jobs.ToListAsync();
         }
     }
 }

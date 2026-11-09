@@ -11,8 +11,8 @@ namespace Application.Interfaces
     {
         public Job CreateJob(Job job);
         public Job GetNextQueuedJob();
-        public Job? GetJobById(Guid id);
+        public Task<Job?> GetJobById(Guid id);
         Task<int> SaveChangesAsync();
-
+        public Task<List<Job>> GetJobs();
     }
 }

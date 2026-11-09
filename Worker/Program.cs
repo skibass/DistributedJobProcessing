@@ -11,7 +11,7 @@ builder.Services.AddHostedService<Worker.Worker>();
 
 builder.Services.AddHttpClient<JobApiClient>(client =>
 {
-    client.BaseAddress = new Uri("https://localhost:7131/");
+    client.BaseAddress = new Uri("http://127.0.0.1:5213/");
 });
 
 var host = builder.Build();
